@@ -1,0 +1,19 @@
+Title=MyDemoApp
+Log=1
+DeleteReadOnly=0
+DeleteRecurse=0
+; Registry=+"HKEY_LOCAL_MACHINE\SOFTWARE\MyCompany\MyDemoApp"
+; Registry=+"HKEY_LOCAL_MACHINE\SOFTWARE\MyCompany\MyDemoApp","InstallPath"="C:\Program Files\MyDemoApp"
+; Registry=+"HKEY_LOCAL_MACHINE\SOFTWARE\MyCompany\MyDemoApp","Version"=dword:0000000a
+; Registry=+"HKLM\SOFTWARE\MyCompany\MyDemoApp","Flags"=hex:01,00,00,00
+; Registry=+"HKEY_CURRENT_USER\Software\MyDemoApp","Path"=hex(2):43,00,3a,00,5c,00,00,00
+; Registry=+"HKEY_CURRENT_USER\Software\MyDemoApp","List"=hex(7):61,00,00,00,62,00,00,00,00,00
+; Registry="HKEY_CURRENT_USER\Software\MyDemoApp","Changed"="newvalue"
+; File=+"C:\Program Files\MyDemoApp\app.exe"
+; File=+"C:\Program Files\MyDemoApp\bin\helper.dll"
+; File=+"C:\Program Files\MyDemoApp\readme.txt"
+; Directory=+"C:\Program Files\MyDemoApp"
+; Directory=+"C:\Program Files\MyDemoApp\bin"
+; Directory=+"C:\Program Files\MyDemoApp\empty"
+Registry="HKEY_LOCAL_MACHINE\SOFTWARE\SomeOtherApp","OldValue"="removed"
+File="C:\Windows\Temp\leftover.tmp"

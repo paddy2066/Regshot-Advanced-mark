@@ -13,6 +13,14 @@ BUT **Regshot advanced** got a plethora of configuration possibilities and produ
 * NSIS installer and uninstaller files, directly usable by the appropriate compiler (see great open source installer **[nsis](https://nsis.sourceforge.io/Main_Page)**) 
 * Innosetup installer and uninstaller files, directly usable by the appropriate compiler (see great open source installer **[innosetup](https://jrsoftware.org/isinfo.php)**) 
 
+### Turning a captured install into an MSI
+
+Need a **Windows Installer (.msi)** instead of an `.exe` installer? Export the
+comparison as a **UNL** file and run the `regshot2msi` converter in
+[`tools/regshot2msi`](tools/regshot2msi): it produces a **WiX** source file that the
+[WiX Toolset](https://wixtoolset.org/) compiles into an `.msi`. See
+[tools/regshot2msi/README.md](tools/regshot2msi/README.md) for the full workflow.
+
 ![Demo Animation](../../wiki/images/regshot_main.png)
 
 ## Installation and usage of Regshot advanced 
