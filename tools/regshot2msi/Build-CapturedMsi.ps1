@@ -210,7 +210,13 @@ function Select-UnlFile {
 Write-Host "Regshot -> MSI capture wizard" -ForegroundColor White
 Write-Host "=============================" -ForegroundColor White
 
-if (-not $OutputMsi) { $OutputMsi = Join-Path (Get-Location).Path ("{0}.msi" -f $Title) }
+if (-not $OutputMsi) {
+    # Default to the Desktop so the .msi is easy to find even when the wizard was
+    # launched elevated (whose working directory is system32).
+    $desktop = [Environment]::GetFolderPath('Desktop')
+    if (-not $desktop) { $desktop = (Get-Location).Path }
+    $OutputMsi = Join-Path $desktop ("{0}.msi" -f $Title)
+}
 
 $converter = Join-Path $scriptDir "regshot2msi.py"
 if (-not (Test-Path -LiteralPath $converter)) {

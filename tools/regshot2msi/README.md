@@ -30,10 +30,26 @@ produces, so no changes to the application are required.
   dotnet tool install --global wix
   ```
 
-## Quick start: the guided wizard (recommended)
+## Quick start: double-click the batch file (easiest)
 
-`Build-CapturedMsi.ps1` drives the whole pipeline — configure Regshot, capture,
-convert, and build — so you end up with a deployable `.msi` in one run:
+**`Capture-And-Build-MSI.cmd`** is the one-click entry point. Double-click it and it
+will:
+
+* elevate to administrator (so Regshot can see `HKLM` and `Program Files` changes),
+* ask for the application name, manufacturer, and (optionally) an installer to run,
+* launch the wizard below and leave the window open with the result.
+
+You can also pass wizard arguments straight through, e.g.:
+
+```bat
+Capture-And-Build-MSI.cmd -Title "MyApp" -InstallerPath "C:\dl\Setup.exe"
+```
+
+## The guided wizard
+
+`Build-CapturedMsi.ps1` (what the batch file calls) drives the whole pipeline —
+configure Regshot, capture, convert, and build — so you end up with a deployable
+`.msi` in one run:
 
 ```powershell
 .\Build-CapturedMsi.ps1 -Title "MyApp" -Manufacturer "My Company"
