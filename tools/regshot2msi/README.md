@@ -36,8 +36,16 @@ produces, so no changes to the application are required.
 will:
 
 * elevate to administrator (so Regshot can see `HKLM` and `Program Files` changes),
+* **check for Python 3 and WiX and install them for you if missing** (via `winget`
+  and `dotnet tool`; the .NET SDK is pulled in automatically because WiX needs it),
 * ask for the application name, manufacturer, and (optionally) an installer to run,
 * launch the wizard below and leave the window open with the result.
+
+The only thing it can't auto-install is `winget` itself (Microsoft's "App Installer",
+present by default on Windows 10 21H2+ / Windows 11). If `winget` is missing it tells
+you which package to install by hand. After a fresh Python/WiX install it adds them to
+the current session's `PATH`; if a tool still isn't detected, just run the batch file
+again.
 
 You can also pass wizard arguments straight through, e.g.:
 
