@@ -30,7 +30,39 @@ produces, so no changes to the application are required.
   dotnet tool install --global wix
   ```
 
-## Usage
+## Quick start: the guided wizard (recommended)
+
+`Build-CapturedMsi.ps1` drives the whole pipeline — configure Regshot, capture,
+convert, and build — so you end up with a deployable `.msi` in one run:
+
+```powershell
+.\Build-CapturedMsi.ps1 -Title "MyApp" -Manufacturer "My Company"
+```
+
+It will:
+
+1. Configure `regshot.ini` for you (enable UNL output **with** registry value data,
+   turn on registry + filesystem scanning, point output at a work folder). Your
+   original `regshot.ini` is backed up and restored afterwards.
+2. Launch Regshot and prompt you to click **1st shot**.
+3. Wait while you install the app — or launch it for you if you pass
+   `-InstallerPath "C:\dl\Setup.exe"`.
+4. Prompt you to click **2nd shot** (Regshot auto-compares and writes the capture).
+5. Run the converter and `wix build` automatically, producing `MyApp.msi`.
+
+Regshot itself has no command-line mode, so the three shot/compare clicks are
+manual; everything else is automated. If WiX isn't installed yet, the wizard still
+produces the `.wxs` and prints the exact `wix build` command to finish on a machine
+that has it.
+
+Deploy the resulting `.msi` with **PDQ Deploy** (New Package → Install step → pick
+the `.msi`; it installs silently, `/qn /norestart`), Intune, or GPO.
+
+Useful switches: `-InstallerPath`, `-OutputMsi`, `-InstallRoot`, `-StripPrefix`,
+`-RegshotExe`, `-KeepIntermediate`. Run `Get-Help .\Build-CapturedMsi.ps1 -Full`
+for details.
+
+## Manual usage (converter only)
 
 1. In **Regshot Advanced**: take the 1st shot, run the installer `.exe`, take the
    2nd shot, then **Compare**. Enable the **UNL** output format so a `.unl` file is
